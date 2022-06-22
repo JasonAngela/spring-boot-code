@@ -1,0 +1,8 @@
+server:
+  port: 9090
+
+rocketmq:
+  name-server: 101.43.18.30:9876
+  producer:
+    group: tengxunyun-group
+    send-message-timeout: 30000

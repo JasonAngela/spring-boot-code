@@ -1,0 +1,9 @@
+server:
+  port: 8088
+
+spring:
+  redis:
+    host: 101.43.18.30
+    port: 6379
+    database: 0
+    password: lzp@@5724209
