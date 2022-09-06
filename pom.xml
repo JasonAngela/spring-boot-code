@@ -14,6 +14,7 @@
         <module>rocketmq</module>
         <module>redis</module>
         <module>hadoop-hdfs</module>
+        <module>day-test</module>
     </modules>
     <description>qilang code platform</description>
 
