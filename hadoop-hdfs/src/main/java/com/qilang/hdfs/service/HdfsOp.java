@@ -8,6 +8,8 @@ import org.apache.hadoop.io.IOUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * @Author huql
@@ -15,23 +17,30 @@ import java.io.IOException;
  * @Date $ $
  **/
 public class HdfsOp {
-    public static void main(String[] args) throws IOException {
 
+
+    private static final  String HDFS_PATH = "hdfs://114.116.71.114:9000";
+
+    public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException {
         //获取hdfs配置信息
         Configuration configuration = new Configuration();
-        configuration.set("fs.defaultFS", "hdfs://114.116.71.114:9000");
-
+        //configuration.set("dfs.client.use.datanode.hostname", "true");
+        //configuration.set("dfs.datanode.address", "114.116.71.114:9866");
         //获取操作Hdfs对象
-        FileSystem fileSystem = FileSystem.get(configuration);
+        FileSystem fileSystem = FileSystem.get(new URI(HDFS_PATH), configuration, "root");
 
+        //fileSystem.delete(new Path("/asas.txt"), true);
+        fileSystem.copyFromLocalFile(new Path("C:\\Users\\hql\\Desktop\\asas.txt"), new Path("/asas.txt"));
+        fileSystem.close();
+        //fileSystem.copyFromLocalFile();
         //获取本地文件输入流
-        FileInputStream fileInputStream = new FileInputStream("/Users/huqilang/Desktop/setting-bcs.xml");
+        //FileInputStream fileInputStream = new FileInputStream("C:\\Users\\hql\\Desktop\\asas.txt");
 
         //获取HDFS系统的输出流
-        FSDataOutputStream fsDataOutputStream = fileSystem.create(new Path("/test.xml"));
+      //  FSDataOutputStream fsDataOutputStream = fileSystem.create(new Path("/asas.txt"));
 
         //上传文件 通过工具类把输入流拷贝到输出流中，实现本地文件上传到HDFS
-        IOUtils.copyBytes(fileInputStream, fsDataOutputStream, 1024, false);
+      //  IOUtils.copyBytes(fileInputStream, fsDataOutputStream, 1024, true);
 
     }
 }
