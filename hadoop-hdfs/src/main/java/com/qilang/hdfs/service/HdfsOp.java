@@ -28,9 +28,13 @@ public class HdfsOp {
         //获取操作Hdfs对象
         FileSystem fileSystem = FileSystem.get(new URI(HDFS_PATH), configuration, "root");
 
-        fileSystem.copyFromLocalFile(new Path("D:\\soft\\jdk-8u202-windows-x64.exe"), new Path("/jdk.exe"));
-        fileSystem.close();
+//        fileSystem.copyFromLocalFile(new Path("D:\\soft\\jdk-8u202-windows-x64.exe"), new Path("/jdk.exe"));
+//        fileSystem.close();
 
+        FSDataOutputStream fsDataOutputStream = fileSystem.create(new Path("/user.txt"));
+
+        fsDataOutputStream.write("你好啊，老婆".getBytes());
+        fsDataOutputStream.close();
 
         //获取本地文件输入流
         //FileInputStream fileInputStream = new FileInputStream("C:\\Users\\hql\\Desktop\\asas.txt");
@@ -40,7 +44,6 @@ public class HdfsOp {
 
         //上传文件 通过工具类把输入流拷贝到输出流中，实现本地文件上传到HDFS
       //  IOUtils.copyBytes(fileInputStream, fsDataOutputStream, 1024, true);
-
 
         //fileSystem.delete(new Path("/asas.txt"), true);
 
