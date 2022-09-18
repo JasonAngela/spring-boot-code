@@ -33,7 +33,7 @@ public class HdfsOp {
 
         FSDataOutputStream fsDataOutputStream = fileSystem.create(new Path("/user.txt"));
 
-        fsDataOutputStream.write("你好啊，老婆".getBytes());
+        fsDataOutputStream.write("你好啊，老婆111".getBytes());
         fsDataOutputStream.close();
 
         //获取本地文件输入流

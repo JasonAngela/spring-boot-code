@@ -1,9 +1,14 @@
 package com.qilang.hdfs.mr;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
@@ -80,6 +85,37 @@ public class WordCountJob {
      */
 
     public static void main(String[] args) {
+        try {
+            Configuration conf =  new Configuration();
+            Job job = Job.getInstance(conf);
+
+            
+            //这一行必须设置 集群必须找到Job类
+            job.setJarByClass(WordCountJob.class);
+
+            //指定输入路劲--读文件
+            FileInputFormat.setInputPaths(job, new Path("/hello.txt"));
+
+            //指定输出路劲--输出结果
+            FileOutputFormat.setOutputPath(job, new Path("/result.txt"));
+
+            //指定mapper相关代码
+            job.setMapperClass(MyMapper.class);
+            job.setMapOutputKeyClass(Text.class);
+            job.setMapOutputValueClass(LongWritable.class);
+
+            //指定reduce相关代码
+            job.setReducerClass(MyReduce.class);
+            job.setOutputKeyClass(Text.class);
+            job.setOutputValueClass(LongWritable.class);
+
+
+            //提交job
+            job.waitForCompletion(true);
+
+        } catch (Exception e) {
+            e.fillInStackTrace();
+        }
 
     }
 
