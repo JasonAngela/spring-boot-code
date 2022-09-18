@@ -89,7 +89,7 @@ public class WordCountJob {
             Configuration conf =  new Configuration();
             Job job = Job.getInstance(conf);
 
-            
+
             //这一行必须设置 集群必须找到Job类
             job.setJarByClass(WordCountJob.class);
 
@@ -97,7 +97,7 @@ public class WordCountJob {
             FileInputFormat.setInputPaths(job, new Path("/hello.txt"));
 
             //指定输出路劲--输出结果
-            FileOutputFormat.setOutputPath(job, new Path("/result.txt"));
+            FileOutputFormat.setOutputPath(job, new Path("/out"));
 
             //指定mapper相关代码
             job.setMapperClass(MyMapper.class);
