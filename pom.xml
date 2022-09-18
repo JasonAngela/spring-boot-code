@@ -15,6 +15,7 @@
         <module>redis</module>
         <module>hadoop-hdfs</module>
         <module>day-test</module>
+        <module>code-generator</module>
     </modules>
     <description>qilang code platform</description>
 
