@@ -26,6 +26,9 @@ public class TestSequenceFile {
         configuration.set("fs.defaultFs", HDFS_PATH);
         //获取操作Hdfs对象
 
+        //删除输出文件
+
+
         /**
          * 1.选择输出目录
          * 2.描述key
@@ -48,9 +51,15 @@ public class TestSequenceFile {
                 //文件名
                 String fileName = file.getName();
 
+                Text key = new Text(fileName);
+                Text value = new Text(fileValue);
+
+                writer.append(key, value);
             }
 
         }
+
+        writer.close();
     }
 
     public static void main(String[] args) throws URISyntaxException {
