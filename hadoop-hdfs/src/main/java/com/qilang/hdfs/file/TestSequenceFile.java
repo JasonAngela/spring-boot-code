@@ -2,6 +2,7 @@ package com.qilang.hdfs.file;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.SequenceFile;
@@ -24,11 +25,10 @@ public class TestSequenceFile {
         Configuration configuration = new Configuration();
         configuration.set("dfs.client.use.datanode.hostname", "true");
         configuration.set("fs.defaultFs", HDFS_PATH);
-        //获取操作Hdfs对象
-
         //删除输出文件
+        FileSystem fileSystem = FileSystem.get(configuration);
 
-
+        fileSystem.delete(new Path(outputPath), true);
         /**
          * 1.选择输出目录
          * 2.描述key
