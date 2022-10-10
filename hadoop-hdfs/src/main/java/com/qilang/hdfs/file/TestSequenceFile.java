@@ -3,15 +3,15 @@ package com.qilang.hdfs.file;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.yarn.webapp.hamlet2.Hamlet;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * @author hql
@@ -45,9 +45,9 @@ public class TestSequenceFile {
         File inputFile = new File(inputDir);
         if (inputFile.isDirectory()) {
 
-            for (File file : inputFile.listFiles()) {
+            for (File file : Objects.requireNonNull(inputFile.listFiles())) {
                 //文件内容
-                String fileValue = FileUtils.readFileToString(file, "UTF-8");
+                String fileValue = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
                 //文件名
                 String fileName = file.getName();
 
@@ -62,7 +62,7 @@ public class TestSequenceFile {
         writer.close();
     }
 
-    public static void main(String[] args) throws URISyntaxException {
-
+    public static void main(String[] args) throws IOException {
+        write("D:\\smallfile", "/seqfile");
     }
 }

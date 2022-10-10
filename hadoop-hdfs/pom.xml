@@ -25,14 +25,14 @@
             <artifactId>hadoop-client</artifactId>
             <version>3.2.0</version>
             <!--打jar时候 不使用-->
-            <scope>provided</scope>
+<!--            <scope>provided</scope>-->
         </dependency>
 
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
             <version>3.2.0</version>
-            <scope>provided</scope>
+<!--            <scope>provided</scope>-->
         </dependency>
     </dependencies>
 
