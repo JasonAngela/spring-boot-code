@@ -9,6 +9,7 @@ import org.apache.hadoop.io.Text;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
@@ -18,17 +19,19 @@ import java.util.Objects;
  */
 public class TestSequenceFile {
 
-    private static final  String HDFS_PATH = "hdfs://114.116.71.114:9000";
+    private static final  String HDFS_PATH = "hdfs://hadoop01:9000";
 
-    private static void write(String inputDir, String outputPath) throws IOException {
+    private static void write(String inputDir, String outputPath) throws IOException, URISyntaxException, InterruptedException {
         //获取hdfs配置信息
         Configuration configuration = new Configuration();
         configuration.set("dfs.client.use.datanode.hostname", "true");
-        configuration.set("fs.defaultFs", HDFS_PATH);
+        //configuration.set("fs.defaultFs", HDFS_PATH);
         //删除输出文件
-        FileSystem fileSystem = FileSystem.get(configuration);
+        FileSystem fileSystem = FileSystem.get(new URI(HDFS_PATH), configuration, "root");
 
         fileSystem.delete(new Path(outputPath), true);
+
+
         /**
          * 1.选择输出目录
          * 2.描述key
@@ -62,7 +65,27 @@ public class TestSequenceFile {
         writer.close();
     }
 
-    public static void main(String[] args) throws IOException {
-        write("D:\\smallfile", "/seqfile");
+
+    private static void read(String inputPath) throws IOException {
+        //获取hdfs配置信息
+        Configuration configuration = new Configuration();
+        configuration.set("dfs.client.use.datanode.hostname", "true");
+
+        SequenceFile.Reader reader = new SequenceFile.Reader(configuration, SequenceFile.Reader.file(new Path(inputPath)));
+
+        Text key = new Text();
+        Text value = new Text();
+
+        while (reader.next(key, value)) {
+            System.out.println("文件名:" + key);
+            System.out.println("文件内容:" + value);
+        }
+
+    }
+
+
+    public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException {
+        //write("D:\\smallfile", HDFS_PATH +"/seqfile");
+        read(HDFS_PATH + "/seqfile");
     }
 }
