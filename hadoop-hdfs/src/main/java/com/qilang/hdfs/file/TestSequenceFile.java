@@ -81,6 +81,8 @@ public class TestSequenceFile {
             System.out.println("文件内容:" + value);
         }
 
+        reader.close();
+
     }
 
 
