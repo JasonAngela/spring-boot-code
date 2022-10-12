@@ -9,6 +9,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.GenericOptionsParser;
 
 import java.io.IOException;
 
@@ -86,7 +87,9 @@ public class WordCountJobQueue {
     public static void main(String[] args) {
         try {
             Configuration conf =  new Configuration();
-            conf.set("mapreduce.job.queuename", "offline");
+
+            String[] remainArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+
             Job job = Job.getInstance(conf);
 
 
@@ -95,10 +98,10 @@ public class WordCountJobQueue {
 
 
             //指定输入路劲--读文件
-            FileInputFormat.setInputPaths(job, new Path("/hello.txt"));
+            FileInputFormat.setInputPaths(job, new Path(remainArgs[0]));
 
             //指定输出路劲--输出结果
-            FileOutputFormat.setOutputPath(job, new Path("/out"));
+            FileOutputFormat.setOutputPath(job, new Path(remainArgs[1]));
 
             //指定mapper相关代码
             job.setMapperClass(WordCountJob.MyMapper.class);
