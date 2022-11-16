@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSON;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -23,6 +24,21 @@ public class Test {
     public static void main(String[] args) {
 
 
+        Result result = new Result();
+        result.setCode("200");
+        result.setData(true);
+        result.setMessage("66");
+        result.setSuccess(Boolean.TRUE);
+
+        BaseFlowRespDTO respDTO = JSON.parseObject(JSON.toJSONString(result), BaseFlowRespDTO.class);
+
+        System.out.println(JSON.toJSONString(respDTO));
+
+
+
+        //System.out.println(StrUtil.subSufByLength("", 12));
+
+
 //        Map<String, String> map = new HashMap<>();
 //        map.put("a", "b");
 //        map.put("b", "c");
@@ -35,19 +51,19 @@ public class Test {
 //        list1.add("12");
 //        map1.keySet().removeAll(list1);
 //        System.out.println(map1.keySet());
-        int randomIntA = RandomUtil.randomInt(4, 9);
-        int randomIntB = RandomUtil.randomInt(4, 9);
-
-        String a = RandomUtil.randomString(4);
-        String b = RandomUtil.randomStringUpper(4);
-
-        System.out.println(CharSequenceUtil.appendIfMissing(a, b));
+//        int randomIntA = RandomUtil.randomInt(4, 9);
+//        int randomIntB = RandomUtil.randomInt(4, 9);
+//
+//        String a = RandomUtil.randomString(4);
+//        String b = RandomUtil.randomStringUpper(4);
+//
+//        System.out.println(CharSequenceUtil.appendIfMissing(a, b));
 
 
 //        String randomString="";
 //        while (!(StrUtil.containsAny(randomString, upperStr) && StrUtil.containsAny(randomString,lowerStr) && StrUtil.containsAny(randomString,numStr))){
 //            // 生成8到17之间的随机整数(包含8不包含17)
-            int randomInt = RandomUtil.randomInt(8, 17);
+            //int randomInt = RandomUtil.randomInt(8, 17);
 //            randomString = RandomUtil.randomString(upperStr + lowerStr + numStr, randomInt);
 //        }
 //        System.out.println(randomString);
@@ -85,18 +101,18 @@ public class Test {
 //        List<String> sub = (List<String>) CollUtil.subtract(list2, list1);
 //        System.out.println(sub);
 
-        Set<String> mdmCodes = new HashSet<>();
-        mdmCodes.add("12sasa");
-        mdmCodes.add("opo09102");
-        mdmCodes.add("8723nksada");
+//        Set<String> mdmCodes = new HashSet<>();
+//        mdmCodes.add("12sasa");
+//        mdmCodes.add("opo09102");
+//        mdmCodes.add("8723nksada");
+//
+//        AtomicReference<String> param = new AtomicReference<>("");
+//        mdmCodes.forEach(m -> param.set(param.get() + "mdm_code = '" + m + "' || "));
+//
+//        System.out.println(param.get());
 
-        AtomicReference<String> param = new AtomicReference<>("");
-        mdmCodes.forEach(m -> param.set(param.get() + "mdm_code = '" + m + "' || "));
 
-        System.out.println(param.get());
-
-
-        System.out.println(CharSequenceUtil.subBefore(param.get(),"||", true));
+//        System.out.println(CharSequenceUtil.subBefore(param.get(),"||", true));
 
 
     }

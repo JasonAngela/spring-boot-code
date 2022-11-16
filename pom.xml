@@ -16,6 +16,7 @@
         <module>hadoop-hdfs</module>
         <module>day-test</module>
         <module>code-generator</module>
+        <module>hive</module>
     </modules>
     <description>qilang code platform</description>
 
