@@ -19,9 +19,6 @@
     </modules>
     <description>qilang code platform</description>
 
-
-
-
     <properties>
         <fastjson.version>1.2.79</fastjson.version>
         <hutool.version>5.7.15</hutool.version>
@@ -37,6 +34,12 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.5.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -70,5 +73,20 @@
             <url>https://mirrors.huaweicloud.com/repository/maven/</url>
         </repository>
     </repositories>
+
+    <!--maven 构建-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

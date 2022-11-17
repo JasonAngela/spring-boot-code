@@ -48,12 +48,12 @@ public class Generator {
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
         gc.setControllerName("%sController");
-        gc.setEntityName("%sDO");
+        gc.setEntityName("%s");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://172.20.2.60:3306/dev-itg-basic?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai");
+        dsc.setUrl("jdbc:mysql://172.20.2.60:3306/dev-itg-data-collection?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("bcs_2022");
@@ -61,7 +61,7 @@ public class Generator {
 
         // 包配置（可修改）
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.itg.bcs.system.permission");
+        pc.setParent("com.itg.report.task");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -131,10 +131,10 @@ public class Generator {
         strategy.setRestControllerStyle(true);//生成Rest风格controller
         strategy.setEntityTableFieldAnnotationEnable(true); //生成@TableField
         strategy.setTablePrefix("t_");
-        strategy.setSuperEntityClass("SuperDO");
+        strategy.setSuperEntityClass("BaseEntity");
         strategy.setSuperMapperClass("BaseMapper");
         strategy.setInclude(new String[]{
-                "t_sys_organization"
+                "t_data_template","t_data_template_class","t_data_template_line","t_data_template_line_group","t_data_template_line_name","t_data_template_line_sum",""
         });// 需要生成的表
 
         strategy.setControllerMappingHyphenStyle(true);
