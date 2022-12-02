@@ -2,10 +2,16 @@ package com.qilang.test;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.cron.CronUtil;
+import cn.hutool.cron.pattern.CronPattern;
+import cn.hutool.cron.pattern.CronPatternUtil;
 
+import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
@@ -20,7 +26,7 @@ public class Test {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
 
 //        Map<String, String> map = new HashMap<>();
@@ -35,19 +41,19 @@ public class Test {
 //        list1.add("12");
 //        map1.keySet().removeAll(list1);
 //        System.out.println(map1.keySet());
-        int randomIntA = RandomUtil.randomInt(4, 9);
-        int randomIntB = RandomUtil.randomInt(4, 9);
-
-        String a = RandomUtil.randomString(4);
-        String b = RandomUtil.randomStringUpper(4);
-
-        System.out.println(CharSequenceUtil.appendIfMissing(a, b));
+//        int randomIntA = RandomUtil.randomInt(4, 9);
+//        int randomIntB = RandomUtil.randomInt(4, 9);
+//
+//        String a = RandomUtil.randomString(4);
+//        String b = RandomUtil.randomStringUpper(4);
+//
+//        System.out.println(CharSequenceUtil.appendIfMissing(a, b));
 
 
 //        String randomString="";
 //        while (!(StrUtil.containsAny(randomString, upperStr) && StrUtil.containsAny(randomString,lowerStr) && StrUtil.containsAny(randomString,numStr))){
 //            // 生成8到17之间的随机整数(包含8不包含17)
-            int randomInt = RandomUtil.randomInt(8, 17);
+            //int randomInt = RandomUtil.randomInt(8, 17);
 //            randomString = RandomUtil.randomString(upperStr + lowerStr + numStr, randomInt);
 //        }
 //        System.out.println(randomString);
@@ -85,19 +91,33 @@ public class Test {
 //        List<String> sub = (List<String>) CollUtil.subtract(list2, list1);
 //        System.out.println(sub);
 
-        Set<String> mdmCodes = new HashSet<>();
-        mdmCodes.add("12sasa");
-        mdmCodes.add("opo09102");
-        mdmCodes.add("8723nksada");
+//        Set<String> mdmCodes = new HashSet<>();
+//        mdmCodes.add("12sasa");
+//        mdmCodes.add("opo09102");
+//        mdmCodes.add("8723nksada");
+//
+//        AtomicReference<String> param = new AtomicReference<>("");
+//        mdmCodes.forEach(m -> param.set(param.get() + "mdm_code = '" + m + "' || "));
+//
+//        System.out.println(param.get());
+//
+//
+//        System.out.println(CharSequenceUtil.subBefore(param.get(),"||", true));
 
-        AtomicReference<String> param = new AtomicReference<>("");
-        mdmCodes.forEach(m -> param.set(param.get() + "mdm_code = '" + m + "' || "));
+        //System.out.println(Integer.toBinaryString(123));
+//        long i = 1;
+//        int j = 1;
+//        System.out.println(i == j);
 
-        System.out.println(param.get());
+       // 0 0 10 * * ?
+       // 59 59 23 * * ?
 
+        //CronPatternUtil.matchedDates()
 
-        System.out.println(CharSequenceUtil.subBefore(param.get(),"||", true));
+//        CronPattern cronPattern = new CronPattern("0 0 10 * * ?");
+//        cronPattern.
 
-
+        Date nextValidTime = new CronExpression("59 59 23 * * ?").getNextValidTimeAfter(new Date());
+        System.out.println(DateUtil.format(nextValidTime, "yyyy-MM-dd HH:mm:ss"));
     }
 }

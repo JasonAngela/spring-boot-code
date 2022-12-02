@@ -134,7 +134,7 @@ public class Generator {
         strategy.setSuperEntityClass("BaseEntity");
         strategy.setSuperMapperClass("BaseMapper");
         strategy.setInclude(new String[]{
-                "t_data_template","t_data_template_class","t_data_template_line","t_data_template_line_group","t_data_template_line_name","t_data_template_line_sum",""
+                "t_data_template_element"
         });// 需要生成的表
 
         strategy.setControllerMappingHyphenStyle(true);
