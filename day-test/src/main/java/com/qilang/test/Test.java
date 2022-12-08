@@ -155,19 +155,26 @@ public class Test {
 //        对上述拼接后的字符串计算 HMAC哈希。需要将待签名字符串、以及App Secret 的
 //        UTF8 编码后，再进行哈希。哈希后的数据，需要转为 hex 格式，并转小写。
 
-        //appkey=aub1_4a9e943yqvn,nonce=12512612712,timestamp=1670490413
+
 //        byte[] key = "aub1_4a9e943yqvn".getBytes();
 //        HMac mac = new HMac(HmacAlgorithm.HmacSHA256, key);
 //        String signature = "appkey=aub1_4a9e943yqvn,nonce=12512612712,timestamp=1670490413";
 //        String appKetSign = mac.digestHex(signature);
 //        System.out.println(appKetSign);
+
+
+
+        byte[] key = "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ".getBytes();
+        HMac mac = new HMac(HmacAlgorithm.HmacSHA256, key);
+        System.out.println(mac.digestHex("appkey=aub1_e377jw9l5o,nonce=1251aaaaaaa,timestamp=1670513198"));
+
         //appSercrt
 //        byte[] key2 = "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ".getBytes();
 //        HMac mac2 = new HMac(HmacAlgorithm.HmacSHA256, key2);
 //        mac2.digestHex()
 // b977f4b13f93f549e06140971bded384
         //String macHex1 = mac.digestHex(testStr);
-        System.out.println(encrytSHA256("appkey=aub1_4a9e943yqvn,nonce=12512612712aaa,timestamp=1670491992", "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ"));
+        //System.out.println(encrytSHA256("appkey=aub1_e377jw9l5o,nonce=12512612712111,timestamp=1670512731", "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ"));
 
 
     }
@@ -180,8 +187,6 @@ public class Test {
             mac.init(secretKey);
             byte[] digest = mac.doFinal(content.getBytes("UTF-8"));
             return new HexBinaryAdapter().marshal(digest).toLowerCase();
-            // .toLowerCase()小写
-            // .toUpperCase();大写
         } catch (Exception e) {
             throw new RuntimeCryptoException("加密异常");
         }
