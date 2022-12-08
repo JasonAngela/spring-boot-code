@@ -166,7 +166,7 @@ public class Test {
 
         byte[] key = "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ".getBytes();
         HMac mac = new HMac(HmacAlgorithm.HmacSHA256, key);
-        System.out.println(mac.digestHex("appkey=aub1_e377jw9l5o,nonce=1251aaaaaaa,timestamp=1670513198"));
+        System.out.println(mac.digestHex("appkey=aub1_e377jw9l5o,nonce=12516xxxxxx,timestamp=1670515954"));
 
         //appSercrt
 //        byte[] key2 = "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ".getBytes();
