@@ -4,13 +4,23 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.util.HashUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.cron.CronUtil;
 import cn.hutool.cron.pattern.CronPattern;
 import cn.hutool.cron.pattern.CronPatternUtil;
+import cn.hutool.crypto.digest.HMac;
+import cn.hutool.crypto.digest.HmacAlgorithm;
+import org.bouncycastle.crypto.RuntimeCryptoException;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
+import java.security.Security;
 import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -117,7 +127,63 @@ public class Test {
 //        CronPattern cronPattern = new CronPattern("0 0 10 * * ?");
 //        cronPattern.
 
-        Date nextValidTime = new CronExpression("59 59 23 * * ?").getNextValidTimeAfter(new Date());
-        System.out.println(DateUtil.format(nextValidTime, "yyyy-MM-dd HH:mm:ss"));
+//        Date nextValidTime = new CronExpression("59 59 23 * * ?").getNextValidTimeAfter(new Date());
+//        System.out.println(DateUtil.format(nextValidTime, "yyyy-MM-dd HH:mm:ss"));
+
+//        Date date1 = DateUtil.parse("2022-12-05 17:47:40.869", "yyyy-MM-dd HH:mm:ss.SSS");
+//        System.out.println(date1);
+//
+//        Date date2 = DateUtil.parse("2022-12-05", "yyyy-MM-dd");
+//        System.out.println(date2);
+//
+//        System.out.println(DateUtil.isSameDay(date1, date2));
+
+          //appkey={AppKey},nonce={Nonce},timestamp ={Timestamp}
+
+        //aub1_e377jw9l5o
+
+        //BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ
+
+
+        //12512612712
+        //则待签名字符串为：
+
+        //appkey=aub1_4a9e943yqvn, nonce = aef3b69aeec, timestamp = 1544817600
+
+//        第二步：签名数据
+//        需要使用使用 HMAC SHA256 算法，以 AppKey 作为 key，
+//        对上述拼接后的字符串计算 HMAC哈希。需要将待签名字符串、以及App Secret 的
+//        UTF8 编码后，再进行哈希。哈希后的数据，需要转为 hex 格式，并转小写。
+
+        //appkey=aub1_4a9e943yqvn,nonce=12512612712,timestamp=1670490413
+//        byte[] key = "aub1_4a9e943yqvn".getBytes();
+//        HMac mac = new HMac(HmacAlgorithm.HmacSHA256, key);
+//        String signature = "appkey=aub1_4a9e943yqvn,nonce=12512612712,timestamp=1670490413";
+//        String appKetSign = mac.digestHex(signature);
+//        System.out.println(appKetSign);
+        //appSercrt
+//        byte[] key2 = "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ".getBytes();
+//        HMac mac2 = new HMac(HmacAlgorithm.HmacSHA256, key2);
+//        mac2.digestHex()
+// b977f4b13f93f549e06140971bded384
+        //String macHex1 = mac.digestHex(testStr);
+        System.out.println(encrytSHA256("appkey=aub1_4a9e943yqvn,nonce=12512612712aaa,timestamp=1670491992", "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ"));
+
+
+    }
+
+    public static String encrytSHA256(String content, String secret) {
+        try {
+            Security.addProvider(new BouncyCastleProvider());
+            SecretKey secretKey = new SecretKeySpec(secret.getBytes("UTF8"), "HmacSHA256");
+            Mac mac = Mac.getInstance(secretKey.getAlgorithm());
+            mac.init(secretKey);
+            byte[] digest = mac.doFinal(content.getBytes("UTF-8"));
+            return new HexBinaryAdapter().marshal(digest).toLowerCase();
+            // .toLowerCase()小写
+            // .toUpperCase();大写
+        } catch (Exception e) {
+            throw new RuntimeCryptoException("加密异常");
+        }
     }
 }
