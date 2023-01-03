@@ -68,10 +68,10 @@
 
     <repositories>
         <repository>
-            <id>huaweicloud</id>
+            <id>aliyun</id>
             <name>Maven Central</name>
             <layout>default</layout>
-            <url>https://mirrors.huaweicloud.com/repository/maven/</url>
+            <url>https://maven.aliyun.com/repository/central</url>
         </repository>
     </repositories>
 

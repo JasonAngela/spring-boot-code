@@ -20,6 +20,8 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.Security;
 import java.text.ParseException;
 import java.util.*;
@@ -36,7 +38,7 @@ public class Test {
 
 
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, UnsupportedEncodingException {
 
 
 //        Map<String, String> map = new HashMap<>();
@@ -164,9 +166,9 @@ public class Test {
 
 
 
-        byte[] key = "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ".getBytes();
-        HMac mac = new HMac(HmacAlgorithm.HmacSHA256, key);
-        System.out.println(mac.digestHex("appkey=aub1_e377jw9l5o,nonce=12516xxxxxx,timestamp=1670515954"));
+//        byte[] key = "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ".getBytes();
+//        HMac mac = new HMac(HmacAlgorithm.HmacSHA256, key);
+//        System.out.println(mac.digestHex("appkey=aub1_e377jw9l5o,nonce=12516GGGGG,timestamp=1670556584"));
 
         //appSercrt
 //        byte[] key2 = "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ".getBytes();
@@ -176,6 +178,12 @@ public class Test {
         //String macHex1 = mac.digestHex(testStr);
         //System.out.println(encrytSHA256("appkey=aub1_e377jw9l5o,nonce=12512612712111,timestamp=1670512731", "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ"));
 
+
+        String str = "中建一局集团建设发展有限公司";
+
+
+
+        System.out.println(new String(str.getBytes(), StandardCharsets.UTF_8));
 
     }
 
