@@ -17,6 +17,7 @@
         <module>day-test</module>
         <module>code-generator</module>
         <module>hive</module>
+        <module>hbase</module>
     </modules>
     <description>qilang code platform</description>
 
