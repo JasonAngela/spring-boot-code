@@ -18,7 +18,7 @@ public abstract class MessageBody implements Serializable {
     public abstract String getMessageType();
 
     /**
-     * 钉钉消息体：文本消息
+     * 消息体：文本消息
      */
     @Getter
     @Setter
@@ -75,7 +75,7 @@ public abstract class MessageBody implements Serializable {
     }
 
     /**
-     * 钉钉消息体：文件消息
+     * 消息体：文件消息
      */
     @Getter
     @Setter
@@ -127,7 +127,7 @@ public abstract class MessageBody implements Serializable {
     }
 
     /**
-     * 钉钉消息体：语音消息
+     * 消息体：语音消息
      */
     @Getter
     @Setter
@@ -161,7 +161,7 @@ public abstract class MessageBody implements Serializable {
     }
 
     /**
-     * 钉钉消息体：链接消息
+     * 消息体：链接消息
      */
     @Getter
     @Setter
