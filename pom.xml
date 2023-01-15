@@ -19,6 +19,7 @@
         <module>hive</module>
         <module>hbase</module>
         <module>alarm</module>
+        <module>data-permission</module>
     </modules>
     <description>qilang code platform</description>
 
