@@ -22,7 +22,13 @@ public @interface DataPermission {
     public String field() default "";
 
     /**
-     * 列表,逗号隔开
+     * sapCodes,逗号隔开
      */
-    String permission() default "";
+    String sapCodes() default "";
+
+    /**
+     * comCodes,逗号隔开
+     */
+    String comCodes() default "";
+
 }
