@@ -19,7 +19,7 @@ import java.net.URISyntaxException;
 public class HdfsOp {
 
 
-    private static final  String HDFS_PATH = "hdfs://10.0.0.46:9000";
+    private static final  String HDFS_PATH = "hdfs://192.168.3.106:9000";
 
     public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException {
         //获取hdfs配置信息
@@ -28,13 +28,13 @@ public class HdfsOp {
         //获取操作Hdfs对象
         FileSystem fileSystem = FileSystem.get(new URI(HDFS_PATH), configuration, "root");
 
-        fileSystem.copyFromLocalFile(new Path("C:\\Users\\hql\\Desktop\\向日葵远程控制_3716383.exe"), new Path("/向日葵.exe"));
-        fileSystem.close();
+//        fileSystem.copyFromLocalFile(new Path("/Users/huqilang/Desktop/hbase-2.2.7-bin.tar.gz"), new Path("/hbase.tar.gz"));
+//        fileSystem.close();
 
-//        FSDataOutputStream fsDataOutputStream = fileSystem.create(new Path("/user.txt"));
-//
-//        fsDataOutputStream.write("你好啊，老婆111".getBytes());
-//        fsDataOutputStream.close();
+        FSDataOutputStream fsDataOutputStream = fileSystem.create(new Path("/user.txt"));
+
+        fsDataOutputStream.write("你好啊，老婆111".getBytes());
+        fsDataOutputStream.close();
 
         //获取本地文件输入流
         //FileInputStream fileInputStream = new FileInputStream("C:\\Users\\hql\\Desktop\\asas.txt");
