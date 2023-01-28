@@ -3,6 +3,7 @@ package com.qilang.test;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.HashUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -24,6 +25,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.Security;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
@@ -179,11 +181,15 @@ public class Test {
         //System.out.println(encrytSHA256("appkey=aub1_e377jw9l5o,nonce=12512612712111,timestamp=1670512731", "BeuaYzzMMg6yHtdtBEjdltTpDum3hKdZ"));
 
 
-        String str = "中建一局集团建设发展有限公司";
+//        String str = "中建一局集团建设发展有限公司";
+//
+//
+//
+//        System.out.println(new String(str.getBytes(), StandardCharsets.UTF_8));
 
+        //System.out.println(); LocalDateTimeUtil.of);
+        System.out.println(LocalDateTimeUtil.of(new SimpleDateFormat("yyyyMMdd").parse("20220617")));
 
-
-        System.out.println(new String(str.getBytes(), StandardCharsets.UTF_8));
 
     }
 
