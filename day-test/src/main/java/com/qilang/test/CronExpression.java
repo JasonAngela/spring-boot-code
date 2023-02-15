@@ -1166,7 +1166,7 @@ public final class CronExpression implements Serializable, Cloneable {
 
         // move ahead one second, since we're computing the time *after* the
         // given time
-        afterTime = new Date(afterTime.getTime() + 1000);
+        afterTime = new Date(afterTime.getTime());
         // CronTrigger does not deal with milliseconds
         cl.setTime(afterTime);
         cl.set(Calendar.MILLISECOND, 0);

@@ -2,6 +2,8 @@ package com.qilang.test;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.text.CharSequenceUtil;
@@ -24,6 +26,7 @@ import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.Security;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -187,10 +190,25 @@ public class Test {
 //
 //        System.out.println(new String(str.getBytes(), StandardCharsets.UTF_8));
 
-        //System.out.println(); LocalDateTimeUtil.of);
-        System.out.println(LocalDateTimeUtil.of(new SimpleDateFormat("yyyyMMdd").parse("20220617")));
+        //System.out.println();
+        // LocalDateTimeUtil.of);
+        //System.out.println(LocalDateTimeUtil.of(new SimpleDateFormat("yyyyMMdd").parse("20220617")));
 
 
+        Date now = new Date();
+        DateTime dateTime = DateUtil.parseDate(DateUtil.format(now, DatePattern.NORM_DATE_PATTERN));
+
+
+        Date startData = new CronExpression("0 0 0 1 * ?").getNextValidTimeAfter(DateUtil.parseDate("2023-02-01"));
+        Date endData = new CronExpression("0 4 0 2 * ?").getNextValidTimeAfter(DateUtil.parseDate("2023-02-01"));
+
+
+
+        System.out.println(DateUtil.format(startData, DatePattern.NORM_DATETIME_PATTERN));
+
+        System.out.println(DateUtil.format(endData, DatePattern.NORM_DATETIME_PATTERN));
+
+        System.out.println(DateUtil.format(new Date(), DatePattern.NORM_DATE_PATTERN));
     }
 
     public static String encrytSHA256(String content, String secret) {
