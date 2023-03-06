@@ -25,8 +25,6 @@ public class BusinessReport {
 
 
     public void showReport(IVistor vistor) {
-        list.forEach(m -> {
-            m.accept(vistor);
-        });
+        list.forEach(m -> m.accept(vistor));
     }
 }
