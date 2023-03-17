@@ -7,18 +7,17 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.text.CharSequenceUtil;
-import cn.hutool.core.util.HashUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.*;
 import cn.hutool.cron.CronUtil;
 import cn.hutool.cron.pattern.CronPattern;
 import cn.hutool.cron.pattern.CronPatternUtil;
+import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.crypto.digest.HMac;
 import cn.hutool.crypto.digest.HmacAlgorithm;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
+import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -309,28 +308,44 @@ public class Test {
 
         //System.out.println(CharSequenceUtil.strBuilder("asasa", null, "asasapppas").toString(false));
 
-        String baseUrl = "https://api.riskraider.com/api/v4/finance/getFinanceInfo";
+//        String baseUrl = "https://api.riskraider.com/api/v4/finance/getFinanceInfo";
+//
+//
+//        long timestamp = Calendar.getInstance().getTime().getTime();
+//
+//        String authToken = DigestUtil.md5Hex((timestamp +
+//                "91c483bdbf1944d1963f54ef613d71cc" +
+//                "a66c9f4f1e4145efaced1472890f10a3")
+//                .getBytes());
+//
+//
+//        System.out.println(authToken);
+//
+//        HttpRequest request = HttpRequest.post(baseUrl)
+//                .header("authToken", authToken)
+//                .header("timestamp", timestamp + "")
+//                .header("apiKey", "91c483bdbf1944d1963f54ef613d71cc");
+//
+//        Enterprise enterprise = new Enterprise();
+//        enterprise.setEnterpriseName("厦门建发高科有限公司 ");
+//        HttpResponse response = request.body(JSON.toJSONString(enterprise)).execute();
+//        System.out.println(JSON.toJSONString(response.body()));
 
 
-        long timestamp = Calendar.getInstance().getTime().getTime();
+        byte[] bytes={1,2,3,4};
 
-        String authToken = DigestUtil.md5Hex((timestamp +
-                "91c483bdbf1944d1963f54ef613d71cc" +
-                "a66c9f4f1e4145efaced1472890f10a3")
-                .getBytes());
+        String userId = IdUtil.fastSimpleUUID();
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId",userId);
+        //String pwd = "客商中台-apilink-uat";
+        //String pwd = "客商中台-riskstorm-uat";
+        //hutool工具包的MD5加密 也可以使用spring家的md5
+        String pwd = "客商中台-RiskRiader-uat";
+        String pwdMd5 = SecureUtil.md5(pwd);
+
+        System.out.println(pwdMd5);
 
 
-        System.out.println(authToken);
-
-        HttpRequest request = HttpRequest.post(baseUrl)
-                .header("authToken", authToken)
-                .header("timestamp", timestamp + "")
-                .header("apiKey", "91c483bdbf1944d1963f54ef613d71cc");
-
-        Enterprise enterprise = new Enterprise();
-        enterprise.setEnterpriseName("厦门建发物产有限公司 ");
-        HttpResponse response = request.body(JSON.toJSONString(enterprise)).execute();
-        System.out.println(JSON.toJSONString(response.body()));
     }
 
     public static String encrytSHA256(String content, String secret) {
