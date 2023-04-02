@@ -201,6 +201,6 @@ public class GobangClient extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new GobangClient());
+        SwingUtilities.invokeLater(GobangClient::new);
     }
 }
