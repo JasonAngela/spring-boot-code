@@ -2,10 +2,13 @@ package com.qilang.test;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.UUID;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.*;
 import cn.hutool.cron.CronUtil;
@@ -21,6 +24,7 @@ import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.compress.utils.Lists;
 import org.bouncycastle.crypto.RuntimeCryptoException;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
@@ -332,20 +336,86 @@ public class Test {
 //        System.out.println(JSON.toJSONString(response.body()));
 
 
-        byte[] bytes={1,2,3,4};
+//        byte[] bytes={1,2,3,4};
+//
+//        String userId = IdUtil.fastSimpleUUID();
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("userId",userId);
+//        //String pwd = "客商中台-apilink-prd";
+//        //String pwd = "客商中台-riskstorm-prd";
+//        //hutool工具包的MD5加密 也可以使用spring家的md5
+//        String pwd = "客商中台-RiskRiader-prd";
+//        String pwdMd5 = SecureUtil.md5(pwd);
+//
+//        System.out.println(pwdMd5);
 
-        String userId = IdUtil.fastSimpleUUID();
-        Map<String, Object> map = new HashMap<>();
-        map.put("userId",userId);
-        //String pwd = "客商中台-apilink-uat";
-        //String pwd = "客商中台-riskstorm-uat";
-        //hutool工具包的MD5加密 也可以使用spring家的md5
-        String pwd = "客商中台-RiskRiader-uat";
-        String pwdMd5 = SecureUtil.md5(pwd);
 
-        System.out.println(pwdMd5);
+        //System.out.println(DateUtil.lastMonth().toString(DatePattern.SIMPLE_MONTH_PATTERN));
+
+//        String fileName = "asasasa.txt";
+//        System.out.println(FileUtil.getSuffix(fileName));
+//
+//        System.out.println(UUID.fastUUID().toString(true));
 
 
+//        Long[] userIds = {7293183213L,8921931203231L};
+//
+//        System.out.println(JSON.toJSONString(userIds));
+
+
+//        List<String> emails = Lists.newArrayList();
+//        emails.add("12312312313131");
+//        emails.add("673334242422313");
+//
+//        Long[] test = Convert.toLongArray(emails);
+//        System.out.println(JSON.toJSONString(test));
+
+
+//        List<String> persons = Lists.newArrayList();
+//        persons.add("1");
+//        List<String> waitUsers = Lists.newArrayList();
+//        waitUsers.add("1");
+//        //System.out.println(CollUtil.containsAny(persons, waitUsers));
+//
+//
+//        System.out.println(CollUtil.isEqualList(persons, waitUsers));
+
+//        Simple simple = new Simple();
+//        simple.setId("1");
+//        simple.setName("2");
+//
+//        Simple simple2 = new Simple();
+//        simple.setId("1");
+//        simple.setName("2");
+//        System.out.println(ObjectUtil.equal(simple, simple2));
+
+
+
+
+//        List<String> list1 = Lists.newArrayList();
+//
+//        list1.add("1");
+//        list1.add("2");
+//        list1.add("3");
+//        list1.add("4");
+//        list1.add("5");
+//        list1.add("6");
+//
+//       List<List<String>> list =  CollUtil.split(list1, 10);
+//        System.out.println(list);
+
+//        List<String> persons = Collections.emptyList();
+//        List<String> waitAuditUsers = CollUtil.newArrayList("a", "b","c");
+//        System.out.println(CollUtil.containsAny(persons, waitAuditUsers));
+
+        Set<String> users = CollUtil.newHashSet();
+        users.add("121212313111");
+        users.add("2112442354252");
+        users.add("21124423542521212");
+        users.add("2112488776721212");
+        users.add("2112488776721212");
+        Long[] arrays = Convert.toLongArray(users);
+        System.out.println(JSON.toJSONString(arrays));
     }
 
     public static String encrytSHA256(String content, String secret) {

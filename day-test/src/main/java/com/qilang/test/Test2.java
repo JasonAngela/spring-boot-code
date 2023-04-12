@@ -4,9 +4,11 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.comparator.CompareUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.lang.Validator;
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.qilang.test.common.ExpressRunnerUtil;
 import com.ql.util.express.DefaultContext;
 
@@ -77,19 +79,26 @@ public class Test2 {
         Number[] numbers = {10000.00};
 
         //String express = "'国贸石化'" + " in " + Arrays.asList(array).toString();
-
-
 //        DefaultContext<String, Object> context = new DefaultContext<>();
 //        context.put("amount", 20000.00);
 //        context.put("amounts" , NumberUtil.parseNumber("20000"));
 //        String express = "amount == amounts";
+        //Arrays.stream(array).map(NumberUtil::parseNumber).collect(Collectors.toList())
+//        DefaultContext<String, Object> context = new DefaultContext<>();
+//        String filterValue = "10000,20000";
+//        String[] filterValues = CharSequenceUtil.trim(filterValue).split(",");
+//        context.put("amount", 10000.00);
+//        context.put("amounts" , Arrays.stream(filterValues).map(NumberUtil::parseNumber).collect(Collectors.toList()));
+//        String express = "amount in amounts";
+//        Object r =  ExpressRunnerUtil.getExpressRunner().execute(express, context, null, false,false);
+//        System.out.println("表达式计算：" + express + " = " + r);
+
 
         DefaultContext<String, Object> context = new DefaultContext<>();
-        context.put("amount", 20000.00);
-        context.put("amounts" , Arrays.stream(array).map(NumberUtil::parseNumber).collect(Collectors.toList()));
-        String express = "amount in amounts";
-        Object r =  ExpressRunnerUtil.getExpressRunner().execute(express,context, null, false,false);
+        context.put("sap_name", "国贸纸业纸张事业部东莞区");
+        context.put("sap_name_check", "国贸纸业纸张事业部上海区");
+        String express = "sap_name == sap_name_check";
+        Object r =  ExpressRunnerUtil.getExpressRunner().execute(express, context, null, false,false);
         System.out.println("表达式计算：" + express + " = " + r);
-
     }
 }
