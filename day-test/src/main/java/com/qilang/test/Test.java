@@ -408,14 +408,23 @@ public class Test {
 //        List<String> waitAuditUsers = CollUtil.newArrayList("a", "b","c");
 //        System.out.println(CollUtil.containsAny(persons, waitAuditUsers));
 
-        Set<String> users = CollUtil.newHashSet();
-        users.add("121212313111");
-        users.add("2112442354252");
-        users.add("21124423542521212");
-        users.add("2112488776721212");
-        users.add("2112488776721212");
-        Long[] arrays = Convert.toLongArray(users);
-        System.out.println(JSON.toJSONString(arrays));
+//        Set<String> users = CollUtil.newHashSet();
+//        users.add("121212313111");
+//        users.add("2112442354252");
+//        users.add("21124423542521212");
+//        users.add("2112488776721212");
+//        users.add("2112488776721212");
+//        Long[] arrays = Convert.toLongArray(users);
+//        System.out.println(JSON.toJSONString(arrays));
+
+
+        List<String> persons = CollUtil.newArrayList();
+        persons.add("2");
+        List<String> waitUsers = CollUtil.newArrayList();
+        waitUsers.add("1");
+        waitUsers.add("2");
+        waitUsers.add("3");
+        System.out.println(CollUtil.intersection(persons, waitUsers));
     }
 
     public static String encrytSHA256(String content, String secret) {
