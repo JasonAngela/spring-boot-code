@@ -95,8 +95,8 @@ public class Test2 {
 
 
         DefaultContext<String, Object> context = new DefaultContext<>();
-        context.put("sap_name", "国贸纸业纸张事业部东莞区");
-        context.put("sap_name_check", "国贸纸业纸张事业部上海区");
+        context.put("sap_name", 200.00);
+        context.put("sap_name_check", NumberUtil.parseNumber("200"));
         String express = "sap_name == sap_name_check";
         Object r =  ExpressRunnerUtil.getExpressRunner().execute(express, context, null, false,false);
         System.out.println("表达式计算：" + express + " = " + r);
