@@ -4,6 +4,7 @@ import cn.hutool.core.util.URLUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.qilang.test.json.ReqestDTO;
 import java.util.HashMap;
 
@@ -15,6 +16,7 @@ public class Test3 {
     public static void main(String[] args) {
         ReqestDTO reqestDTO = new ReqestDTO();
         reqestDTO.setBillCode("asasa");
+        //reqestDTO.setTime("w1231");
         System.out.println(JSON.toJSONString(reqestDTO));
         //转换成key value 形式
 

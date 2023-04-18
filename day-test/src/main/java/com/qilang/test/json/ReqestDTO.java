@@ -13,4 +13,6 @@ public class ReqestDTO implements Serializable {
     @JSONField(name = "bill_code")
     private String billCode;
 
+    @JSONField(name = "_time")
+    private String time;
 }
