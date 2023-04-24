@@ -2,6 +2,7 @@ package com.qilang.test;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.comparator.CompareUtil;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.core.text.CharSequenceUtil;
@@ -10,9 +11,12 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.qilang.test.common.ExpressRunnerUtil;
+import com.qilang.test.ql.OperatorNotIn;
 import com.ql.util.express.DefaultContext;
+import com.ql.util.express.ExpressRunner;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -72,33 +76,37 @@ public class Test2 {
 //            return (boolean) o;
 //        };
 //        System.out.println(predicate.test(map));
-
-        String str = "10000.00,20000";
+        ExpressRunner expressRunner =    ExpressRunnerUtil.getExpressRunner();
+        expressRunner.addOperator("notin", new OperatorNotIn());
+        String str = "123";
 
         String[] array = str.replace("，", ",").split(",");
         Number[] numbers = {10000.00};
 
         //String express = "'国贸石化'" + " in " + Arrays.asList(array).toString();
-//        DefaultContext<String, Object> context = new DefaultContext<>();
-//        context.put("amount", 20000.00);
-//        context.put("amounts" , NumberUtil.parseNumber("20000"));
-//        String express = "amount == amounts";
-        //Arrays.stream(array).map(NumberUtil::parseNumber).collect(Collectors.toList())
+        DefaultContext<String, Object> context = new DefaultContext<>();
+        context.put("amount", 123);
+        context.put("amounts" ,str);
+        String express = "amount == amounts";
+//        Arrays.stream(array).map(NumberUtil::parseNumber).collect(Collectors.toList())
 //        DefaultContext<String, Object> context = new DefaultContext<>();
 //        String filterValue = "10000,20000";
 //        String[] filterValues = CharSequenceUtil.trim(filterValue).split(",");
 //        context.put("amount", 10000.00);
 //        context.put("amounts" , Arrays.stream(filterValues).map(NumberUtil::parseNumber).collect(Collectors.toList()));
 //        String express = "amount in amounts";
-//        Object r =  ExpressRunnerUtil.getExpressRunner().execute(express, context, null, false,false);
-//        System.out.println("表达式计算：" + express + " = " + r);
-
-
-        DefaultContext<String, Object> context = new DefaultContext<>();
-        context.put("sap_name", 200.00);
-        context.put("sap_name_check", NumberUtil.parseNumber("200"));
-        String express = "sap_name == sap_name_check";
         Object r =  ExpressRunnerUtil.getExpressRunner().execute(express, context, null, false,false);
         System.out.println("表达式计算：" + express + " = " + r);
+
+
+//        DefaultContext<String, Object> context = new DefaultContext<>();
+//        context.put("sap_name", "教案设计阿卡萨");
+//        context.put("sap_name_check", "123教案设计阿卡萨");
+//        String express = "'1' not in ['1','2','3']";
+//        Object r =  ExpressRunnerUtil.getExpressRunner().execute(express, new DefaultContext<>(), null, false,false);
+//        System.out.println("表达式计算：" + express + " = " + r);
+
+        System.out.println("NOT_IN".toLowerCase());
+
     }
 }
