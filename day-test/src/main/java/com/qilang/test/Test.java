@@ -338,16 +338,16 @@ public class Test {
 
 //        byte[] bytes={1,2,3,4};
 //
-//        String userId = IdUtil.fastSimpleUUID();
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("userId",userId);
-//        //String pwd = "客商中台-apilink-prd";
-//        //String pwd = "客商中台-riskstorm-prd";
-//        //hutool工具包的MD5加密 也可以使用spring家的md5
-//        String pwd = "客商中台-RiskRiader-prd";
-//        String pwdMd5 = SecureUtil.md5(pwd);
-//
-//        System.out.println(pwdMd5);
+        String userId = IdUtil.fastSimpleUUID();
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId",userId);
+        //String pwd = "客商中台-apilink-prd";
+        //String pwd = "客商中台-riskstorm-prd";
+        //hutool工具包的MD5加密 也可以使用spring家的md5
+        String pwd = "sap-hupun-uat";
+        String pwdMd5 = SecureUtil.md5(pwd);
+
+        System.out.println(pwdMd5);
 
 
         //System.out.println(DateUtil.lastMonth().toString(DatePattern.SIMPLE_MONTH_PATTERN));
@@ -418,13 +418,13 @@ public class Test {
 //        System.out.println(JSON.toJSONString(arrays));
 
 
-        List<String> persons = CollUtil.newArrayList();
-        persons.add("2");
-        List<String> waitUsers = CollUtil.newArrayList();
-        waitUsers.add("1");
-        waitUsers.add("2");
-        waitUsers.add("3");
-        System.out.println(CollUtil.intersection(persons, waitUsers));
+//        List<String> persons = CollUtil.newArrayList();
+//        persons.add("2");
+//        List<String> waitUsers = CollUtil.newArrayList();
+//        waitUsers.add("1");
+//        waitUsers.add("2");
+//        waitUsers.add("3");
+//        System.out.println(CollUtil.intersection(persons, waitUsers));
     }
 
     public static String encrytSHA256(String content, String secret) {
