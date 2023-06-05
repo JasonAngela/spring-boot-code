@@ -17,11 +17,11 @@ public class ExcelDemo {
         File file = new File("/Users/huqilang/Desktop/aa.xlsx");
         Workbook workbook = WorkbookFactory.create(file);
         //读第一个sheet
-        Sheet sheet = workbook.getSheetAt(2);
+        Sheet sheet = workbook.getSheetAt(4);
 
         Row row0 = sheet.getRow(0);
         Row row1 = sheet.getRow(1);
-        String str = "update t_data_template_element set sort=%s  where template_id=1685408540370512489 and alive_flag='1' and name='%s' and table_name='t_data_task_shipment_not_received';";
+        String str = "update t_data_template_element set sort=%s  where template_id=1685408540370512489 and alive_flag='1' and name='%s' and table_name='t_data_task_credit_owed';";
         for (int i = 0; i< row0.getLastCellNum(); i++) {
             //输出sql
             System.out.println(String.format(str, NumberUtil.parseInt(String.valueOf(row0.getCell(i).getNumericCellValue())), row1.getCell(i).getStringCellValue()));
