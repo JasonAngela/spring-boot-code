@@ -341,10 +341,11 @@ public class Test {
         String userId = IdUtil.fastSimpleUUID();
         Map<String, Object> map = new HashMap<>();
         map.put("userId",userId);
-        //String pwd = "客商中台-apilink-prd";
-        //String pwd = "客商中台-riskstorm-prd";
+        String pwd = "SAP-worldcheck-prd";
+        //String pwd = "Logistics-客商业务中台-apilink-uat";
+        //String pwd = "客商中台-riskstorm-test";
         //hutool工具包的MD5加密 也可以使用spring家的md5
-        String pwd = "sap-hupun-uat";
+        //String pwd = "sap-hupun-prd";
         String pwdMd5 = SecureUtil.md5(pwd);
 
         System.out.println(pwdMd5);

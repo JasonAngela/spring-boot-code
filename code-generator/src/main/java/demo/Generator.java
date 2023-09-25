@@ -53,7 +53,7 @@ public class Generator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://172.20.2.60:3306/chatgpt?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai");
+        dsc.setUrl("jdbc:mysql://172.20.2.60:3306/dev-itg-data-collection?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("bcs_2022");
@@ -134,7 +134,7 @@ public class Generator {
         strategy.setSuperEntityClass("BaseEntity");
         strategy.setSuperMapperClass("BaseMapper");
         strategy.setInclude(new String[]{
-                "t_user", "t_user_count", "t_user_sum"
+                "t_data_refinitiv"
         });// 需要生成的表
 
         strategy.setControllerMappingHyphenStyle(true);
