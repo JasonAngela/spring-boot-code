@@ -61,7 +61,7 @@ public class Generator {
 
         // 包配置（可修改）
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.itg.report.task");
+        pc.setParent("com.itg.monitor.server.modules");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -134,7 +134,7 @@ public class Generator {
         strategy.setSuperEntityClass("BaseEntity");
         strategy.setSuperMapperClass("BaseMapper");
         strategy.setInclude(new String[]{
-                "t_data_refinitiv"
+                "t_data_report_task","t_data_report_task_trigger","t_data_task_report_assign"
         });// 需要生成的表
 
         strategy.setControllerMappingHyphenStyle(true);
