@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 类描述: flow返回基础类 相当于code
@@ -25,4 +26,7 @@ public class BaseFlowRespDTO implements Serializable {
 
     @JSONField(name = "success")
     private Boolean success;
+
+
+    private List<String> names;
 }

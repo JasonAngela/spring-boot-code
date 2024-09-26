@@ -1,12 +1,18 @@
 package com.qilang.test;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.qilang.test.json.ReqestDTO;
+
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -15,7 +21,7 @@ import java.util.HashMap;
 public class Test3 {
 
     public static void main(String[] args) {
-        ReqestDTO reqestDTO = new ReqestDTO();
+        /*ReqestDTO reqestDTO = new ReqestDTO();
         reqestDTO.setBillCode("asasa");
         //reqestDTO.setTime("w1231");
         System.out.println(JSON.toJSONString(reqestDTO));
@@ -35,6 +41,13 @@ public class Test3 {
             System.out.println(s);
         }
 
-        String[] arrays = new String[]{};
+        String[] arrays = new String[]{};*/
+
+        //System.out.println(DateUtil.format(new Date(), DatePattern.PURE_DATE_PATTERN));
+
+        /*String sign = DigestUtil.md5Hex(String.format("%s%s", "b91eq", DateUtil.format(new Date(), DatePattern.PURE_DATE_PATTERN)));
+        System.out.println(sign);*/
+
+
     }
 }

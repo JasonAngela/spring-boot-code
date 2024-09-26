@@ -1,9 +1,16 @@
 package com.qilang.test.json;
 
+import cn.hutool.core.util.HexUtil;
+import cn.hutool.crypto.BCUtil;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.SmUtil;
+import cn.hutool.crypto.asymmetric.SM2;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
 
+import java.security.KeyPair;
 import java.util.List;
 
 public class Test3 {
@@ -12,8 +19,38 @@ public class Test3 {
 //        DateDemo dateDemo =  JSON.parseObject(str, DateDemo.class);
 //        System.out.println(dateDemo.getDebtToassets());
 
-        String str = "[{\"debttoassets\":48.6792,\"fa_Latelyyear2\":2020.0,\"net_profit_is\":2180045.87,\"stmnote_seg_1701\":NaN,\"tax\":2418106.21,\"tot_assets\":281899908.84,\"tot_equity\":144673340.03,\"tot_liab\":137226568.81,\"tot_oper_rev\":149746689.03,\"tot_profit\":4598152.08,\"yoy_or\":73.1664,\"yoyop\":-33.4582,\"yoyop2\":-85.36888386899328,\"yoyprofit\":-57.95244370616576},{\"debttoassets\":38.5323,\"fa_Latelyyear2\":2021.0,\"net_profit_is\":29129774.58,\"stmnote_seg_1701\":NaN,\"tax\":9096959.61,\"tot_assets\":280528380.04,\"tot_equity\":172434343.23,\"tot_liab\":108094036.81,\"tot_oper_rev\":292703776.86,\"tot_profit\":38226734.19,\"yoy_or\":95.4659,\"yoyop\":732.4319,\"yoyop2\":3139.9131406176334,\"yoyprofit\":1236.200076377292},{\"debttoassets\":26.4628,\"fa_Latelyyear2\":2022.0,\"net_profit_is\":34901343.78,\"stmnote_seg_1701\":NaN,\"tax\":13161899.92,\"tot_assets\":288886978.81,\"tot_equity\":212439395.48,\"tot_liab\":76447583.33,\"tot_oper_rev\":367570583.96,\"tot_profit\":48063243.7,\"yoy_or\":25.5777,\"yoyop\":8.8228,\"yoyop2\":42.60308725071862,\"yoyprofit\":19.813298534629453},{\"debttoassets\":NaN,\"fa_Latelyyear2\":2022.0,\"net_profit_is\":NaN,\"stmnote_seg_1701\":NaN,\"tax\":NaN,\"tot_assets\":NaN,\"tot_equity\":NaN,\"tot_liab\":NaN,\"tot_oper_rev\":NaN,\"tot_profit\":NaN,\"yoy_or\":NaN,\"yoyop\":NaN,\"yoyop2\":NaN,\"yoyprofit\":NaN}]";
-        List<WsdResDTO> list = JSON.parseArray(str, WsdResDTO.class);
-        list.forEach(m -> System.out.println(JSON.toJSONString(m)));
+        // 创建一个 JSON 数组字符串
+        //String jsonArrayStr = "[{\"name\": \"John\", \"age\": 30}, {\"name\": \"Jane\", \"age\": 25}]";
+
+        // 解析 JSON 数组字符串
+        //JSONArray jsonArray = JSON.parseArray(jsonArrayStr);
+
+        // 遍历 JSONArray 并对每个 JSONObject 添加新属性
+        /*for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            // 添加新的属性
+            jsonObject.put("gender", i % 2 == 0 ? "male" : "female");
+            jsonObject.put("id", i + 1);
+            jsonObject.put("active", true);
+        }*/
+
+        // 打印修改后的 JSONArray
+        //System.out.println(jsonArray.toJSONString());
+
+
+        //KeyPair pair = SecureUtil.generateKeyPair("SM2");
+
+        //创建sm2 对象
+        SM2 sm2 = SmUtil.sm2();
+        //这里会自动生成对应的随机秘钥对 , 注意！ 这里一定要强转，才能得到对应有效的秘钥信息
+        byte[] privateKey = BCUtil.encodeECPrivateKey(sm2.getPrivateKey());
+        //这里公钥不压缩  公钥的第一个字节用于表示是否压缩  可以不要
+        //byte[] publicKey = ((BCECPublicKey) sm2.getPublicKey()).getQ().getEncoded(false);
+        //这里得到的 压缩后的公钥   ((BCECPublicKey) sm2.getPublicKey()).getQ().getEncoded(true);
+         byte[] publicKeyEc = BCUtil.encodeECPublicKey(sm2.getPublicKey());
+        //打印当前的公私秘钥
+        System.out.println("私钥: " + HexUtil.encodeHexStr(privateKey).toUpperCase());
+        System.out.println("公钥: " + HexUtil.encodeHexStr(publicKeyEc).toUpperCase());
+
     }
 }

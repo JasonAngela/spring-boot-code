@@ -21,6 +21,7 @@
         <module>alarm</module>
         <module>data-permission</module>
         <module>design-pattern</module>
+        <module>kyc-test</module>
     </modules>
     <description>qilang code platform</description>
 

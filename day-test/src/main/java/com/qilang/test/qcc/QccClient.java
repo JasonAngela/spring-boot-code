@@ -24,16 +24,25 @@ public class QccClient {
 
     public static void main(String[] args) {
 
-//        long time = DateUtil.currentSeconds();
-//        String token = DigestUtil.md5Hex(String.format("%s%s%s", "ab8e6840bd2148bba495de647ad56e47", time, "385C3F6AA2309D913685BC4345E2591A")).toUpperCase();
-//        Map<String, Object> params = MapUtil.newHashMap();
-//        params.put("key", "ab8e6840bd2148bba495de647ad56e47");
-//        params.put("companyName","上海珪璋贸易有限公司");
-//        HttpResponse response = HttpRequest.get("https://api.qichacha.com/BeneficialOwner/GetInfo")
-//                .header("Token", token)
-//                .header("Timespan", String.valueOf(time))
-//                .form(params).execute();
-//        System.out.println(response.body());
+        long time = DateUtil.currentSeconds();
+        String token = DigestUtil.md5Hex(String.format("%s%s%s", "ab8e6840bd2148bba495de647ad56e47", time, "385C3F6AA2309D913685BC4345E2591A")).toUpperCase();
+        Map<String, Object> params = MapUtil.newHashMap();
+        params.put("key", "ab8e6840bd2148bba495de647ad56e47");
+        params.put("searchKey","WEALTH INT'L TRADE LIMITED");
+        HttpResponse response = HttpRequest.get("http://api.qichacha.com/BelongGroup/GetInfo")
+                .header("Token", token)
+                .header("Timespan", String.valueOf(time))
+                .form(params).execute();
+        System.out.println(response.body());
+
+
+
+
+
+
+
+
+
        // System.out.println(System.currentTimeMillis());
 
 //        String text = "{\n" +
@@ -63,12 +72,12 @@ public class QccClient {
 //        System.out.println(params.get());
 //        params.remove();
 
-        for (int i = 0; i<5; i++) {
+        /*for (int i = 0; i<5; i++) {
             if(i == 3) {
                 System.out.println(i);
                 break;
             }
-        }
+        }*/
 
 
     }

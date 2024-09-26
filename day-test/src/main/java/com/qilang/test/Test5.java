@@ -1,17 +1,16 @@
 package com.qilang.test;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.*;
 
-import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+
 
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -29,7 +28,9 @@ public class Test5 {
     };
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+
 //        String randomStringUpper = RandomUtil.randomStringUpper(15);
 //        System.out.println(randomStringUpper);
 
@@ -110,8 +111,44 @@ public class Test5 {
 //
 //        System.out.println((long) a * (1774) > total);
 
-        System.out.println(DateUtil.format(new Date(), DatePattern.PURE_DATE_PATTERN));
+        //System.out.println(DateUtil.format(new Date(), DatePattern.PURE_DATE_PATTERN));
 
+        /*String url = "http://172.20.1.57:81/api/gateway/service/ztzl0119yg";
+        System.out.println(StrUtil.sub(url, url.indexOf("/api"), url.length()));
+        System.out.println(StrUtil.subBefore(url, "/api", false));
+        System.out.println(StrUtil.subAfter(url, "/api", false));
+
+        List<String> list = Arrays.asList("item1", "item2", "item3");
+        // 使用分号连接列表元素
+        String result = String.join(";", list);
+
+        System.out.println(result);  // 输出: item1;item2;item3
+
+        StringBuilder msgBuilder = new StringBuilder();
+        msgBuilder.append("asaasa"+"\n");
+        msgBuilder.append("bbbb"+"\n");
+        msgBuilder.append("ccc"+"\n");
+        System.out.println(StrUtil.subBefore(msgBuilder.toString(), "\n", true) );*/
+
+        //System.out.println(Id);
+
+
+       /* String msg = "/api/gateway/service/ztzl00861yg:SAP快照异常\\n/api/gateway/service/ztzl0088yg:SAP快照异常\\n/api/gateway/service/ztzl0102yg:未开始\\n/api/gateway/service/ztzl0110yg:SAP快照异常\\n/api/gateway/service/ztzl0119yg:SAP快照异常";
+        System.out.println(JSONObject.parseObject(msg));*/
+
+
+        /*List<String> list = CollUtil.newArrayList();
+        list.add("1");
+        list.add("2");
+        System.out.println(JSON.toJSONString(list));*/
+
+        Date d1 = new Date();
+
+        Thread.sleep(2000L);
+
+        Date d2 = new Date();
+
+        System.out.println(DateUtil.between(d1, d2, DateUnit.SECOND));
     }
 
     public static Date getBeginDayOfYesterday() {
