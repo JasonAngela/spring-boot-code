@@ -343,7 +343,7 @@ public class Test {
         map.put("userId",userId);
         //String pwd = "DAP-QCC-prd";
         //String pwd = "Logistics-客商业务中台-apilink-uat";
-        String pwd = "客商中台-xinshu-uat";
+        String pwd = "erpnext";
         //hutool工具包的MD5加密 也可以使用spring家的md5
         //String pwd = "sap-hupun-prd";
         //String pwd = "OA-worldcheck-prd";

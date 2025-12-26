@@ -3,7 +3,6 @@ package com.qilang.test.common;
 import com.ql.util.express.DefaultContext;
 import com.ql.util.express.ExpressRunner;
 
-import java.util.Arrays;
 
 /**
  * @Author huql
@@ -15,15 +14,15 @@ public class SimpleUsageDemo {
     private static DefaultContext<String, Object> context = new DefaultContext<>();
 
     static {
-        context.put("a", 1);
-        context.put("b", 2);
-        context.put("c", 3);
+        context.put("a", 11);
+        context.put("b", 11);
+        /*context.put("c", 3);
         context.put("d", 5);
         context.put("e", String.valueOf(2));
         context.put("list", Arrays.asList(1, 2, 3, 4));
         context.put("list2", Arrays.asList("1", "2", "3", "4"));
         context.put("g", "2023-08-09 12:09:12");
-        context.put("h", "10000.0");
+        context.put("h", "10000.0");*/
     }
 
     private static Object process(String express) throws Exception {
@@ -40,7 +39,7 @@ public class SimpleUsageDemo {
 //        System.out.println("in:" + process("a in list"));
 //        System.out.println("in:" + process("d in list"));
 
-        System.out.println("e == '哈哈哈哈哈1' :" + process("e == '哈哈哈哈哈1'"));
+        /*System.out.println("e == '哈哈哈哈哈1' :" + process("e == '哈哈哈哈哈1'"));
         System.out.println("a == 1:" + process("a == 1"));
         System.out.println("b == '2':" + process("b == \"2\""));
         System.out.println("b != '2':" + process("b != \"2\""));
@@ -60,7 +59,17 @@ public class SimpleUsageDemo {
         System.out.println("f == g:" + process("f == g"));
 
 
-        System.out.println("h == 哈哈哈哈:" + process("h == 哈哈哈哈"));
+        System.out.println("h == 哈哈哈哈:" + process("h == 哈哈哈哈"));*/
+
+
+        String express = "a != b";
+        /*context.put("a", "16.00");
+        context.put("b", "1000000");*/
+        System.out.println(process(express));
+
+       /* Object str = "16.00";
+        boolean reslut = str instanceof Number;
+        System.out.println(reslut);*/
 
     }
 }

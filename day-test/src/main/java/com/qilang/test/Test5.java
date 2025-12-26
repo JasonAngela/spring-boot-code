@@ -1,6 +1,7 @@
 package com.qilang.test;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.*;
 
 import cn.hutool.core.io.FileUtil;
@@ -12,9 +13,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Test5 {
 
@@ -28,7 +35,7 @@ public class Test5 {
     };
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ParseException {
 
 
 //        String randomStringUpper = RandomUtil.randomStringUpper(15);
@@ -142,13 +149,91 @@ public class Test5 {
         list.add("2");
         System.out.println(JSON.toJSONString(list));*/
 
-        Date d1 = new Date();
+        /*String str = "KYHASIOAJS";
+        System.out.println(StrUtil.subWithLength(str, 0, 100));*/
 
-        Thread.sleep(2000L);
+        /*int page = 10;
+        int start = 0;
+        while (start != 5) {
+            if (start > page) {
+                break;
+            }
+            start++;
+            System.out.println(start);
+        }*/
 
-        Date d2 = new Date();
+       /* String str = "http://dap.cpm.cn/dock/api/kyc/company";
+        System.out.println(StrUtil.subAfter(str, "/", true));*/
 
-        System.out.println(DateUtil.between(d1, d2, DateUnit.SECOND));
+      /*  BigDecimal a = new BigDecimal("10000");
+        BigDecimal b = new BigDecimal("4");
+        System.out.println(a.subtract(b).divide(a, RoundingMode.HALF_UP));
+        System.out.println(new DecimalFormat("#.##%").format(a.subtract(b).divide(b,2, RoundingMode.HALF_UP)));*/
+
+
+
+       /* List<String> list = CollUtil.newArrayList();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+
+        List<String> list2 = CollUtil.newArrayList();
+        list2.add("2");
+        list2.add("3");
+        list2.add("4");*/
+        //System.out.println(CollectionUtil.disjunction(list, list2));
+
+        //System.out.println(list.stream().filter("4"::equals).collect(Collectors.toList()).stream().collect(Collectors.toList()));
+        /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date da1 = sdf.parse("2024-10-07");
+        Date da2 = sdf.parse("2024-11-06");
+        System.out.println(DateUtil.between(da2, da1, DateUnit.DAY));*/
+        /*list.forEach(m -> {
+            if (m.equals("1")) {
+                return;
+            }
+            System.out.println(m);
+        });*/
+
+        /*String strr = "   ";
+        System.out.println(CharSequenceUtil.isBlank(strr));*/
+
+       /* List<BaseFlowRespDTO> list = new ArrayList<>();
+        BaseFlowRespDTO respDTO = new BaseFlowRespDTO();
+        respDTO.setCode("200");
+        respDTO.setData("1280121");
+
+        BaseFlowRespDTO respDTO1 = new BaseFlowRespDTO();
+        respDTO1.setCode("200");
+        respDTO1.setData("12801211212");
+
+        list.add(respDTO);
+        list.add(respDTO1);
+        List<String> stringList = list.stream()
+                .flatMap(dp -> Stream.of(dp.getCode(), dp.getData())).distinct()
+                .collect(Collectors.toList());
+        System.out.println(stringList);*/
+
+        /*String str1 = "OTHER BODIES";
+        String str2 = "other bodies";
+
+        boolean contains = StrUtil.equalsIgnoreCase(str2, str1);
+        StrUtil.equalsAnyIgnoreCase(str1, str2);
+        System.out.println("字符串是否相等（忽略大小写）: " + contains);*/
+
+
+        //System.out.println(DateUtil.offsetDay(DateUtil.date(), -65).toString(DatePattern.PURE_DATE_PATTERN));
+
+       // System.out.println(String.format("%s %s", null, "再次提交"));
+
+        //System.out.println(!CharSequenceUtil.startWith("MFSQ202516121", "MFSQ", false));
+
+        String resetDate = "2025-12-24";
+
+        String date = DateUtil.format(new Date(), "yyyy-MM-dd");
+
+        System.out.println(date.compareTo(resetDate) <=0);
+
     }
 
     public static Date getBeginDayOfYesterday() {
